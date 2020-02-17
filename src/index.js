@@ -1,24 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createOvermind } from "overmind";
-import { createHook, Provider } from "overmind-react";
 import "./styles.css";
-
-const app = createOvermind({
-  state: {
-    count: 0
-  },
-  actions: {
-    increaseCount({ state }) {
-      state.count++;
-    },
-    decreaseCount({ state }) {
-      state.count--;
-    }
-  }
-});
-
-const useApp = createHook();
+import { app } from "./app";
+import { useApp } from "./app";
+import { Provider } from "overmind-react";
 
 function App() {
   const { state, actions } = useApp();
