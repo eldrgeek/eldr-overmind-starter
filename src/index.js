@@ -1,27 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./styles.css";
-import { app } from "./app";
-import { useApp } from "./app";
-import { Provider } from "overmind-react";
+import { CurrentModule, React, useApp } from "./util/CurrentModule";
+
+// import "./styles.css";
+import Button from "../src/components/Button";
+import Title from "../src/components/Title.jsx";
 import { logLoader } from "./util/logloader";
 logLoader(module);
-function App() {
-  const { state, actions } = useApp();
 
+function App() {
+  const { state } = useApp();
   return (
     <div className="App">
-      <h1>{state.count}</h1>
-      <button onClick={() => actions.decreaseCount()}>decrease</button>
-      <button onClick={() => actions.increaseCount()}>increase</button>
+      <Title />
+      <Button type="decrease" />
+      <Button type="increase" />
+      <h2>{state.count}</h2>
     </div>
   );
 }
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <Provider value={app}>
-    <App />
-  </Provider>,
-  rootElement
-);
+CurrentModule(App);

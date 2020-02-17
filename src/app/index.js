@@ -4,6 +4,7 @@ import { logLoader } from "../util/logloader";
 logLoader(module);
 export const app = createOvermind({
   state: {
+    title: "The app",
     count: 0
   },
   actions: {
