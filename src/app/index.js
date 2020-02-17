@@ -1,23 +1,24 @@
-// import { createOvermind } from "overmind";
-import { createOvermind } from "../util/statemanager";
 import { createHook } from "overmind-react";
+import state from "./state";
+import { onInitialize } from "./onInitialize";
+import { actions } from "./actions";
+import * as effects from "./effects";
+
+import { createOvermind } from "overmind";
+// import { createOvermind } from "../util/statemanager";
 import { logLoader } from "../util/logloader";
 logLoader(module);
-export const app = createOvermind({
-  state: {
-    reloadLocal: false,
-    title: "The applications",
-    count: 36
-  },
 
-  actions: {
-    increaseCount({ state }) {
-      state.count += 10;
-    },
-    decreaseCount({ state }) {
-      state.count--;
-    }
-  }
+const config = {
+  onInitialize,
+  state,
+  actions,
+  effects
+};
+// console.log("state", state);
+export const app = createOvermind(config, {
+  // devtools: 'penguin.linux.test:8080', //
+  devtools: "localhost:3031"
 });
 
 export const useApp = createHook();
