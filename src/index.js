@@ -4,7 +4,8 @@ import "./styles.css";
 import { app } from "./app";
 import { useApp } from "./app";
 import { Provider } from "overmind-react";
-
+import { logLoader } from "./util/logloader";
+logLoader(module);
 function App() {
   const { state, actions } = useApp();
 

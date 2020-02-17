@@ -1,6 +1,7 @@
 import { createOvermind } from "overmind";
-import { createHook, Provider } from "overmind-react";
-
+import { createHook } from "overmind-react";
+import { logLoader } from "../util/logloader";
+logLoader(module);
 export const app = createOvermind({
   state: {
     count: 0
