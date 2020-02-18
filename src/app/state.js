@@ -3,9 +3,9 @@ logLoader(module);
 // if(window.reloaded) window.location.reload(true)
 // window.reloaded = true;
 const state = {
-  reloadLocal: true,
+  reloadLocal: false,
   title: "CodeSandbox + Overmind\n=\n Awesome",
-  count: 3
+  count: 16
 };
 
 export default state;

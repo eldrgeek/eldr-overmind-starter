@@ -1,7 +1,7 @@
 {
-  "name": "eldr-overmind-starter",
+  "name": "my-overmind-template",
   "version": "1.0.0",
-  "description": "Introduction counter application for Overmind",
+  "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {

@@ -16,7 +16,10 @@ class StateManager {
     } else {
       //automatically create the list to save
       this.scalarStates = Object.keys(state).filter(
-        e => typeof state[e] !== "function" && e !== "devState"
+        e =>
+          typeof state[e] !== "function" &&
+          e !== "devState" &&
+          e !== "reloadLocal"
       );
       // console.log(scalarStates);
     }
@@ -48,7 +51,6 @@ class StateManager {
      */
   process() {
     //stateAttributes must have been set by call to computeScalarStates
-    // console.log("process");
     this.attributes = this.state.devState.stateAttributes.split(",");
     this.savedAttributes = this.getLocalAttribute("savedAttributes");
     if (!this.savedAttributes) this.savedAttributes = [];
@@ -63,13 +65,13 @@ class StateManager {
     // this.restoreSavedAttrs();
   }
 
-  saveAttr(attr, value) {}
-
   async saveAttrs() {
     if (this.state.devState.saveState) {
-      this.attributes.forEach(attr =>
-        this.saveLocalAttribute(attr, this.state[attr])
-      );
+      this.attributes.forEach(attr => {
+        if (this.state.devState.logDiags.save)
+          console.log("Saved", attr, this.state[attr]);
+        this.saveLocalAttribute(attr, this.state[attr]);
+      });
       this.savedAttributes = this.attributes;
     } else {
       this.savedAttributes = [];
@@ -84,14 +86,17 @@ class StateManager {
   makeReaction(app, attr) {
     // console.log("make reaction for", attr);
     const state = this.state;
+    if (state.devState.logDiags.reaction) console.log("Reaction for ", attr);
     app.reaction(
       // this.state => this.state[attr],
 
       state => state[attr],
       //Fix bug passing fragments
       value => {
-        if (state.devState.save) console.log("saved " + attr, value);
-        this.saveLocalAttribute(attr, value);
+        if (this.cancelReaction) return;
+        if (state.devState.logDiags.reaction)
+          console.log("saved " + attr, value[attr]);
+        this.saveLocalAttribute(attr, value[attr]);
       }
     );
   }
@@ -110,7 +115,10 @@ class StateManager {
 
 export const createOvermind = (config, options) => {
   // debugger
+
   let statemanager = new StateManager(config);
+  config.statemanager = statemanager;
+  // statemanager.cancelReaction = true
   //Caution: when hot reloading this will not
   //change anything
   if (!config.state.devState || config.state.devState.source === module.id)
@@ -120,8 +128,9 @@ export const createOvermind = (config, options) => {
       restoreState: true,
       saveState: true,
       logDiags: {
-        save: true,
-        restore: true
+        save: false,
+        restore: false,
+        reaction: true
       }
     };
 
