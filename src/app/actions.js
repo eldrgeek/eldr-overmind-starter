@@ -7,7 +7,13 @@ export const actions = {
   decreaseCount({ state }) {
     state.count--;
   },
+
   nextStep({ state }, event) {
-    if (event.target.tagName !== "BUTTON") state.demoStep++;
+    if (event.target.tagName === "BUTTON") return;
+    if (state.demoStep + 1 >= state.prompts.length) {
+      state.demoStep = 0;
+    } else {
+      state.demoStep++;
+    }
   }
 };

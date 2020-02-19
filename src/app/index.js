@@ -36,21 +36,25 @@ if (!module.hot) {
   if (!module.hot.data) {
     console.log("no hot data");
     initialize();
-
     module.hot.dispose(data => {
       console.log("setting up dispoase");
       data.app = app;
       data.useApp = useApp;
       data.statemanager = config.statemanager;
+      console.log("CANCEL REACTION", data.statemanager.id);
+      data.statemanager.cancelReaction = true;
     });
   } else {
     console.log("restoring what was disposed");
     // module.hot.data.config.state.cancelReaction = true
-    if (module.hot.data.statemanager) {
-      module.hot.data.statemanager.cancelReaction = true;
-    }
+    // if (module.hot.data.statemanager) {
+    // }
+    console.log("CANCEL REACTION", module.hot.data.statemanager.id);
+    module.hot.data.statemanager.cancelReaction = true;
     initialize();
+    module.hot.data.statemanager = config.statemanager;
     // app = module.hot.data.app
+
     // useApp = module.hot.data.useApp
     config.onInitialize(config, app);
 

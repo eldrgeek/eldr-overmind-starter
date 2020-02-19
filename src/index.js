@@ -1,8 +1,5 @@
 import { CurrentModule, React, useApp } from "./util/CurrentModule";
-
-// import "./styles.css";
 import Title from "../src/components/Title.jsx";
-
 import Body from "../src/components/Body.jsx";
 
 import { logLoader } from "./util/logloader";
@@ -17,4 +14,5 @@ function App() {
     </div>
   );
 }
+export default App;
 CurrentModule(App);

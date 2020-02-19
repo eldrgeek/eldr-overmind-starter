@@ -95,7 +95,7 @@ class StateManager {
       value => {
         if (this.cancelReaction) return;
         if (state.devState.logDiags.reaction)
-          console.log("saved " + attr, value[attr]);
+          console.log("saved reaction " + attr, value[attr]);
         this.saveLocalAttribute(attr, value[attr]);
       }
     );
@@ -115,8 +115,11 @@ class StateManager {
 
 export const createOvermind = (config, options) => {
   // debugger
-
+  if (!window.sm$$) window.sm$$ = [];
   let statemanager = new StateManager(config);
+  window.sm$$.push(statemanager);
+  statemanager.id = window.sm$$.length;
+  window.sm$$.forEach(sm => console.log("sm", sm.id, sm.cancelReaction));
   config.statemanager = statemanager;
   // statemanager.cancelReaction = true
   //Caution: when hot reloading this will not

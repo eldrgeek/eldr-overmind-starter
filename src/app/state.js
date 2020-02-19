@@ -4,17 +4,19 @@ logLoader(module);
 // window.reloaded = true;
 const state = {
   reloadLocal: false,
-  title: state => state.prompt[state.demoStep],
-  demoStep: 0,
-  prompt: [
+  title: state => state.prompts[state.demoStep],
+  demoStep: 5,
+  prompts: [
     "CodeSandbox",
     "CodeSandbox\n + React",
     "CodeSandbox\n + React\n + Overmind",
     "CodeSandbox\n + React\n + Overmind\n= Awesome",
     "Hot reloading the UI",
+    "Logloader shows what's loaded",
+    "Styles, of course, reload",
+    "Change a component, only what's needed reloads",
     "Focus on single components"
   ],
   count: 10
 };
-
 export default state;
