@@ -9,7 +9,7 @@ const Body = () => {
   const { state } = useApp();
   return (
     <React.Fragment>
-      {state.demoStep > 0 ? (
+      {state.demoStep > 3 ? (
         <React.Fragment>
           <Button type="decrease" />
           <Button type="increase" />

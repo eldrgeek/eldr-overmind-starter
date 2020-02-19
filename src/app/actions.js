@@ -7,7 +7,7 @@ export const actions = {
   decreaseCount({ state }) {
     state.count--;
   },
-  nextStep({ state }) {
-    state.demoStep++;
+  nextStep({ state }, event) {
+    if (event.target.tagName !== "BUTTON") state.demoStep++;
   }
 };

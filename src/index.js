@@ -11,7 +11,7 @@ logLoader(module);
 function App() {
   const { actions } = useApp();
   return (
-    <div onClick={actions.nextStep} className="App">
+    <div id="div" onClick={actions.nextStep} className="App">
       <Title />
       <Body />
     </div>

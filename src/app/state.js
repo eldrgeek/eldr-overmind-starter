@@ -7,11 +7,14 @@ const state = {
   title: state => state.prompt[state.demoStep],
   demoStep: 0,
   prompt: [
+    "CodeSandbox",
+    "CodeSandbox\n + React",
+    "CodeSandbox\n + React\n + Overmind",
     "CodeSandbox\n + React\n + Overmind\n= Awesome",
     "Hot reloading the UI",
     "Focus on single components"
   ],
-  count: 16
+  count: 10
 };
 
 export default state;
