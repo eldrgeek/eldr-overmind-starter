@@ -6,5 +6,8 @@ export const actions = {
   },
   decreaseCount({ state }) {
     state.count--;
+  },
+  nextStep({ state }) {
+    state.demoStep++;
   }
 };

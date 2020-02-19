@@ -1,20 +1,19 @@
 import { CurrentModule, React, useApp } from "./util/CurrentModule";
 
 // import "./styles.css";
-import Button from "../src/components/Button";
 import Title from "../src/components/Title.jsx";
-import Count from "../src/components/Count.jsx";
+
+import Body from "../src/components/Body.jsx";
+
 import { logLoader } from "./util/logloader";
 logLoader(module);
 
 function App() {
-  const { state } = useApp();
+  const { actions } = useApp();
   return (
-    <div className="App">
+    <div onClick={actions.nextStep} className="App">
       <Title />
-      <Button type="decrease" />
-      <Button type="increase" />
-      <Count />
+      <Body />
     </div>
   );
 }

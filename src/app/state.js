@@ -4,7 +4,13 @@ logLoader(module);
 // window.reloaded = true;
 const state = {
   reloadLocal: false,
-  title: "CodeSandbox + Overmind\n=\n Awesome",
+  title: state => state.prompt[state.demoStep],
+  demoStep: 0,
+  prompt: [
+    "CodeSandbox\n + React\n + Overmind\n= Awesome",
+    "Hot reloading the UI",
+    "Focus on single components"
+  ],
   count: 16
 };
 
