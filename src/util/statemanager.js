@@ -119,7 +119,7 @@ export const createOvermind = (config, options) => {
   let statemanager = new StateManager(config);
   window.sm$$.push(statemanager);
   statemanager.id = window.sm$$.length;
-  window.sm$$.forEach(sm => console.log("sm", sm.id, sm.cancelReaction));
+  // window.sm$$.forEach(sm => console.log("sm", sm.id, sm.cancelReaction));
   config.statemanager = statemanager;
   // statemanager.cancelReaction = true
   //Caution: when hot reloading this will not
@@ -133,7 +133,7 @@ export const createOvermind = (config, options) => {
       logDiags: {
         save: false,
         restore: false,
-        reaction: true
+        reaction: false
       }
     };
 
