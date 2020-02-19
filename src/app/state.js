@@ -17,6 +17,6 @@ const state = {
     "Change a component, only what's needed reloads",
     "Focus on single components"
   ],
-  count: 12
+  count: 2
 };
 export default state;
