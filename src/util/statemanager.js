@@ -7,6 +7,7 @@ class StateManager {
     this.state = state;
     this.actions = actions;
     this.effects = effects;
+    this.reactionDisposers = [];
     // this.state.devState = StateManager.devState;
   }
   computeScalarStates() {
@@ -87,7 +88,7 @@ class StateManager {
     // console.log("make reaction for", attr);
     const state = this.state;
     if (state.devState.logDiags.reaction) console.log("Reaction for ", attr);
-    app.reaction(
+    let disposer = app.reaction(
       // this.state => this.state[attr],
 
       state => state[attr],
@@ -99,6 +100,7 @@ class StateManager {
         this.saveLocalAttribute(attr, value[attr]);
       }
     );
+    this.reactionDisposers.push(disposer);
   }
   initProxy = ({ state, actions, effects }, instance) => {
     // debugger
@@ -133,7 +135,7 @@ export const createOvermind = (config, options) => {
       logDiags: {
         save: false,
         restore: false,
-        reaction: false
+        reaction: true
       }
     };
 
