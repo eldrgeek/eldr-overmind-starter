@@ -135,7 +135,7 @@ export const createOvermind = (config, options) => {
       logDiags: {
         save: false,
         restore: false,
-        reaction: true
+        reaction: false
       }
     };
 

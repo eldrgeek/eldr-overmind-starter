@@ -4,6 +4,9 @@ h2 {
   font-family: sans-serif;
   text-align: center;
 }
+.Outer {
+  height: 60vh;
+}
 button {
   background-color: rgb(247, 242, 243);
   color: red;

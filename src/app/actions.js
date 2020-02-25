@@ -6,14 +6,16 @@ export const actions = {
   },
   decreaseCount({ state }) {
     state.count--;
+    state.count1--;
+    state.count2--;
   },
 
   nextStep({ state }, event) {
     if (event.target.tagName === "BUTTON") return;
-    if (state.demoStep + 1 >= state.prompts.length) {
-      state.demoStep = 0;
+    if (state.demo.demoStep + 1 >= state.demo.prompts.length) {
+      state.demo.demoStep = 0;
     } else {
-      state.demoStep++;
+      state.demo.demoStep++;
     }
   }
 };
