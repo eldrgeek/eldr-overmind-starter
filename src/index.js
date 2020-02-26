@@ -1,6 +1,7 @@
 import { CurrentModule, React, useApp, UI } from "./util";
 // import { Button, Value } from "./util/components";
 import styled from "styled-components";
+import Clipper from "./design/Clipper";
 
 // import Title from "../src/components/Title.jsx";
 // import Body from "../src/components/Body.jsx";
@@ -21,6 +22,7 @@ function App() {
       <UI.Value wrapper={Wrapper} label="count" attr="count" />
       <UI.Button label="incr" onClick={actions.increaseCount} />
       <UI.Button label="decr" onClick={actions.decreaseCount} />
+      <Clipper />
     </React.Fragment>
   );
 }

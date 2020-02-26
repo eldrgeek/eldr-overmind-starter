@@ -1,6 +1,8 @@
 import { logLoader } from "../util/logloader";
 logLoader(module);
-export const actions = {
+export const actions = {};
+
+actions.incr = {
   increaseCount({ state }) {
     state.count++;
   },
@@ -17,5 +19,10 @@ export const actions = {
     } else {
       state.demo.demoStep++;
     }
+  }
+};
+actions._dev = {
+  setClipboard({ state }, contents) {
+    state._dev.toClipboard = contents;
   }
 };

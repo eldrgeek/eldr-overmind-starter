@@ -4,7 +4,7 @@ logLoader(module);
 // window.reloaded = true;
 const state = {
   _dev: {
-    toClipboard: "This goes on the clipboard"
+    toClipboard: "this now goes on the clipboard"
   },
   count: 1,
   count1: 0,

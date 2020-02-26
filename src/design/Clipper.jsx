@@ -1,7 +1,17 @@
-import { CurrentModule, React, useApp } from "../util/CurrentModule";
+import { CurrentModule, React, useApp, UI } from "../util";
+import styled from "styled-components";
+import TextareaAutosize from "react-autosize-textarea";
+
+const StyledTextarea = styled(TextareaAutosize)`
+  font-size: ${({ theme }) => theme.textarea.fontSize};
+  border-color: ${({ theme }) => theme.textarea.borderColor};
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+`;
 
 // const copyToClipboard = str => {
-//   const el = document.createElement("textarea"); // Create a <textarea> element
+//   const el = document.createElement("TextArea"); // Create a <TextArea> element
 //   el.value = str; // Set its value to the string that you want copied
 //   el.setAttribute("readonly", ""); // Make it readonly to be tamper-proof
 //   el.style.position = "absolute";
@@ -22,8 +32,8 @@ import { CurrentModule, React, useApp } from "../util/CurrentModule";
 // };
 
 const Clipper = () => {
-  const { state } = useApp();
-  console.log(state);
+  const { state, actions } = useApp();
+  console.log("Upvalue", state);
   const upValue = () => {
     const el = document.querySelector("#target");
     setTimeout(() => {
@@ -31,16 +41,28 @@ const Clipper = () => {
       document.execCommand("copy");
     });
   };
+  const changeText = event => {
+    const target = event.target;
+    console.log(target.value);
+    actions._dev.setClipboard(target.value);
+  };
+  // setTimeout(upValue,1000)
   return (
     <div className="App">
-      {/* <textarea id="source">A bunch of stuff goes here</textarea> */}
-      <textarea
-        style={{ position: "absolute", left: "-1000px" }}
-        // value={state._dev.toClipboard}
+      <StyledTextarea
+        rows={3}
+        maxRows={10}
+        theme={{
+          textarea: {
+            fontSize: "14px",
+            borderColor: "green"
+          }
+        }}
+        value={state._dev.toClipboard}
         id="target"
-      >
-        Copied stufff here
-      </textarea>
+        onChange={changeText}
+      />
+
       <button onClick={upValue}> Copy </button>
     </div>
   );
