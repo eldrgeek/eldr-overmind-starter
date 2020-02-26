@@ -18,11 +18,12 @@ function App() {
   const { actions } = useApp();
   return (
     <React.Fragment>
-      test
-      <UI.Value wrapper={Wrapper} label="count" attr="count" />
-      <UI.Button label="incr" onClick={actions.increaseCount} />
-      <UI.Button label="decr" onClick={actions.decreaseCount} />
-      <Clipper />
+      <div onDoubleClick={actions._dev.toggleVisible}>
+        <UI.Value wrapper={Wrapper} label="count" attr="count" />
+        <UI.Button label="incr" onClick={actions.increaseCount} />
+        <UI.Button label="decr" onClick={actions.decreaseCount} />
+        <Clipper />
+      </div>
     </React.Fragment>
   );
 }
