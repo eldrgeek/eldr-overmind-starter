@@ -24,5 +24,8 @@ actions.incr = {
 actions._dev = {
   setClipboard({ state }, contents) {
     state._dev.toClipboard = contents;
+  },
+  toggleVisible({ state }) {
+    state._dev.clipperVisible = !state._dev.clipperVisible;
   }
 };
