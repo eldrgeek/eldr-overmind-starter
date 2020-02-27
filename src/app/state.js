@@ -4,8 +4,16 @@ logLoader(module);
 // window.reloaded = true;
 const state = {
   _dev: {
-    toClipboard: "this now goen the clipboard",
-    clipperVisible: true
+    toClipboard: "this now goes to the clipboard",
+    clipperVisible: true,
+    designLines: [
+      "first line",
+      "^",
+      "second line",
+      "third line",
+      "fourth line"
+    ],
+    lineIndex: 1
   },
   count: 1,
   count1: 0,
@@ -32,3 +40,4 @@ const state = {
   reloadLocal: false
 };
 export default state;
+//"this\n^\nthat\nother\n"

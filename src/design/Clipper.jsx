@@ -30,6 +30,34 @@ const Clipper = () => {
       className="App"
     >
       <StyledTextarea
+        maxRows={10}
+        theme={{
+          textarea: {
+            fontSize: "14px",
+            borderColor: "green"
+          }
+        }}
+        value={state._dev.designLines
+          .filter((line, i) => i < state._dev.lineIndex)
+          .join("\n")}
+        id="target"
+        // onChange={changeText}
+      />
+      <StyledTextarea
+        maxRows={10}
+        theme={{
+          textarea: {
+            fontSize: "14px",
+            borderColor: "green"
+          }
+        }}
+        value={state._dev.designLines
+          .filter((line, i) => i > state._dev.lineIndex)
+          .join("\n")}
+        id="target"
+        // onChange={changeText}
+      />
+      <StyledTextarea
         rows={3}
         maxRows={10}
         theme={{
@@ -43,7 +71,9 @@ const Clipper = () => {
         onChange={changeText}
       />
 
+      <button onClick={actions._dev.upLine}> Up </button>
       <button onClick={upValue}> Copy </button>
+      <button onClick={actions._dev.downLine}> Down </button>
     </div>
   );
 };
