@@ -6,13 +6,7 @@ const state = {
   _dev: {
     toClipboard: "this now goes to the clipboard",
     clipperVisible: true,
-    designLines: [
-      "first line",
-      "^",
-      "second line",
-      "third line",
-      "fourth line"
-    ],
+    designLines: ["first line", "second line", "third line", "fourth line"],
     lineIndex: 1
   },
   count: 1,

@@ -33,32 +33,26 @@ actions._dev = {
     text = `this one
 that
 other
-more
 ^
+more
 and more`;
-    state._dev.designLines = text.split("\n");
-    state._dev.designLines.forEach((line, i) => {
-      if (line.match(/\^/)) state._dev.lineIndex = i;
+    const _dev = state._dev;
+    const lines = text.split("\n");
+    _dev.lineIndex = 0;
+    lines.forEach((line, i) => {
+      if (line.match(/\^/)) _dev.lineIndex = i;
     });
+    lines.splice(_dev.lineIndex, 1);
+    _dev.designLines = lines;
   },
   upLine({ state }) {
     const _dev = state._dev;
     if (_dev.lineIndex <= 1) return;
-    const left = _dev.designLines.slice(0, _dev.lineIndex - 1);
-    const right = _dev.designLines.slice(_dev.lineIndex + 1);
-    left.push("^");
-    left.push(_dev.designLines[_dev.lineIndex - 1]);
-    _dev.designLines = left.concat(right);
     _dev.lineIndex--;
   },
   downLine({ state }) {
     const _dev = state._dev;
     if (_dev.lineIndex >= _dev.designLinex - 3) return;
-    const left = _dev.designLines.slice(0, _dev.lineIndex);
-    const right = _dev.designLines.slice(_dev.lineIndex + 2);
-    left.push(_dev.designLines[_dev.lineIndex + 1]);
-    left.push("^");
-    _dev.designLines = left.concat(right);
     _dev.lineIndex++;
   }
 };
