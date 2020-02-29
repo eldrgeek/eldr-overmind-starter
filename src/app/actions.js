@@ -47,12 +47,12 @@ and more`;
   },
   upLine({ state }) {
     const _dev = state._dev;
-    if (_dev.lineIndex <= 1) return;
+    if (_dev.lineIndex === 0) return;
     _dev.lineIndex--;
   },
   downLine({ state }) {
     const _dev = state._dev;
-    if (_dev.lineIndex >= _dev.designLinex - 3) return;
+    if (_dev.lineIndex >= _dev.designLines.length - 1) return;
     _dev.lineIndex++;
   }
 };

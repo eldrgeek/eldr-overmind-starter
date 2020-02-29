@@ -10,6 +10,24 @@ const StyledTextarea = styled(TextareaAutosize)`
   width: 100%;
 `;
 
+const TextArea = (maxRows, id, value, onChange) => {
+  return (
+    <StyledTextarea
+      maxRows={maxRows}
+      theme={{
+        textarea: {
+          fontSize: "14px",
+          borderColor: "green"
+        }
+      }}
+      value={value}
+      onChange={onChange}
+      id={id}
+      // onChange={changeText}
+    />
+  );
+};
+
 const Clipper = () => {
   const { state, actions } = useApp();
   const upValue = () => {
@@ -29,47 +47,32 @@ const Clipper = () => {
       style={{ display: !state._dev.clipperVisible ? "none" : "block" }}
       className="App"
     >
-      <StyledTextarea
-        maxRows={10}
-        theme={{
-          textarea: {
-            fontSize: "14px",
-            borderColor: "green"
-          }
-        }}
-        value={state._dev.designLines
+      {TextArea(
+        10,
+        "above",
+        state._dev.designLines
           .filter((line, i) => i < state._dev.lineIndex)
-          .join("\n")}
-        id="target"
-        // onChange={changeText}
-      />
-      <StyledTextarea
-        maxRows={10}
-        theme={{
-          textarea: {
-            fontSize: "14px",
-            borderColor: "green"
-          }
-        }}
-        value={state._dev.designLines
+          .join("\n"),
+        () => null
+      )}
+
+      {TextArea(
+        10,
+        "selected",
+        state._dev.designLines
+          .filter((line, i) => i === state._dev.lineIndex)
+          .join("\n"),
+        () => null
+      )}
+      {TextArea(
+        10,
+        "below",
+        state._dev.designLines
           .filter((line, i) => i > state._dev.lineIndex)
-          .join("\n")}
-        id="target"
-        // onChange={changeText}
-      />
-      <StyledTextarea
-        rows={3}
-        maxRows={10}
-        theme={{
-          textarea: {
-            fontSize: "14px",
-            borderColor: "green"
-          }
-        }}
-        value={state._dev.toClipboard}
-        id="target"
-        onChange={changeText}
-      />
+          .join("\n"),
+        () => null
+      )}
+      {TextArea(10, "target", state._dev.toClipboard, () => null)}
 
       <button onClick={actions._dev.upLine}> Up </button>
       <button onClick={upValue}> Copy </button>
