@@ -6,12 +6,12 @@
   "main": "src/index.js",
   "dependencies": {
     "nearley": "2.19.1",
-    "overmind": "19.1.1",
-    "overmind-react": "20.1.1",
-    "react": "16.8.6",
+    "overmind": "22.0.5",
+    "overmind-react": "23.0.5",
+    "react": "16.13.0",
     "react-autosize-textarea": "7.0.0",
-    "react-dom": "16.8.6",
-    "react-scripts": "3.0.1",
+    "react-dom": "16.13.0",
+    "react-scripts": "3.4.0",
     "styled-components": "5.0.1"
   },
   "devDependencies": {
@@ -23,5 +23,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

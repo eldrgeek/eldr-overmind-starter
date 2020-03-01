@@ -1,7 +1,8 @@
 import { CurrentModule, React, useApp, UI } from "../util";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-
+// import Grammar from "./Grammar";
+// import design from "./designer";
 const StyledTextarea = styled(TextareaAutosize)`
   font-size: ${({ theme }) => theme.textarea.fontSize};
   border-color: ${({ theme }) => theme.textarea.borderColor};
@@ -21,7 +22,7 @@ const TextArea = (maxRows, id, value, onChange) => {
         }
       }}
       value={value}
-      onChange={onChange}
+      // onChange={onChange}
       id={id}
       // onChange={changeText}
     />
@@ -30,18 +31,33 @@ const TextArea = (maxRows, id, value, onChange) => {
 
 const Clipper = () => {
   const { state, actions } = useApp();
-  const upValue = () => {
-    const el = document.querySelector("#target");
+  // actions._dev.setDesignFromText(design);
+
+  console.log("clipper");
+  const changeValue = () => {
+    const _dev = state._dev;
+    const string = _dev.designLines[_dev.lineIndex];
+    // const translate = Grammar(string)
+    // actions._dev.setClipboard(translate)
+    const el = document.querySelector("#clip");
     setTimeout(() => {
       el.select();
       document.execCommand("copy");
     });
   };
+
+  const upLine = () => {
+    actions._dev.upLine();
+    changeValue();
+  };
+  const downLine = () => {
+    actions._dev.downLine();
+    changeValue();
+  };
   const changeText = event => {
     const target = event.target;
     actions._dev.setClipboard(target.value);
   };
-  // setTimeout(upValue,1000)
   return (
     <div
       style={{ display: !state._dev.clipperVisible ? "none" : "block" }}
@@ -72,11 +88,11 @@ const Clipper = () => {
           .join("\n"),
         () => null
       )}
-      {TextArea(10, "target", state._dev.toClipboard, () => null)}
+      {TextArea(10, "clip", state._dev.toClipboard, () => null)}
 
-      <button onClick={actions._dev.upLine}> Up </button>
-      <button onClick={upValue}> Copy </button>
-      <button onClick={actions._dev.downLine}> Down </button>
+      <button onClick={upLine}> Up </button>
+      <button onClick={changeValue}> Copy </button>
+      <button onClick={downLine}> Down </button>
     </div>
   );
 };

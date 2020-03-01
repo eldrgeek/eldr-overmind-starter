@@ -25,6 +25,5 @@ const Button = ({ label = "'label' prop needed", onClick = defaultClick }) => {
   const { actions } = useApp();
   return <FancyButton onClick={onClick}>{label}</FancyButton>;
 };
-
 export default Button;
 CurrentModule(Button);

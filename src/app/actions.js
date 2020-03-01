@@ -29,13 +29,17 @@ actions._dev = {
     state._dev.clipperVisible = !state._dev.clipperVisible;
     if (event) event.preventDefault();
   },
-  setDesignFromText({ state }, text) {
+
+  setDesignFromText(
+    { state },
     text = `this one
 that
 other
 ^
 more
-and more`;
+and more`
+  ) {
+    // console.log("TEXT IS", text);
     const _dev = state._dev;
     const lines = text.split("\n");
     _dev.lineIndex = 0;
@@ -44,13 +48,14 @@ and more`;
     });
     lines.splice(_dev.lineIndex, 1);
     _dev.designLines = lines;
+    // console.log("Lines that are set is ", lines);
   },
-  upLine({ state }) {
+  downLine({ state }) {
     const _dev = state._dev;
     if (_dev.lineIndex === 0) return;
     _dev.lineIndex--;
   },
-  downLine({ state }) {
+  upLine({ state }) {
     const _dev = state._dev;
     if (_dev.lineIndex >= _dev.designLines.length - 1) return;
     _dev.lineIndex++;

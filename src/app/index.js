@@ -4,8 +4,8 @@ import { onInitialize } from "./onInitialize";
 import { actions } from "./actions";
 import * as effects from "./effects";
 
-// import { createOvermind } from "overmind";
-import { createOvermind } from "../util/statemanager";
+import { createOvermind } from "overmind";
+// import { createOvermind } from "../util/statemanager";
 import { logLoader } from "../util/logloader";
 logLoader(module);
 
@@ -24,7 +24,7 @@ const initialize = () => {
     // devtools: 'penguin.linux.test:8080', //
     devtools: "localhost:3031"
   });
-
+  console.log(app);
   useApp = createHook();
 };
 
@@ -56,7 +56,6 @@ if (!module.hot) {
     // app = module.hot.data.app
     // useApp = module.hot.data.useApp
     config.onInitialize(config, app);
-
     // module.hot.accept(errorHandler);
   }
 }

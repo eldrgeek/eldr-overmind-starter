@@ -74,7 +74,10 @@ const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 parser.feed('ui button "thelabel"  {something}');
 // parser.feed("action increment()");
 console.log("parse", parser.results[0]);
-export default () => {
-  console.log("Yay");
+export default lineToParse => {
+  const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
+
+  parser.feed(lineToParse);
+  return parser.results[0];
 };
 // //https://www.npmjs.com/package/moo
