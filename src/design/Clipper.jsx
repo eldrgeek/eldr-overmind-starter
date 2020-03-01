@@ -1,7 +1,7 @@
 import { CurrentModule, React, useApp, UI } from "../util";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-// import Grammar from "./Grammar";
+import Grammar from "./Grammar";
 // import design from "./designer";
 const StyledTextarea = styled(TextareaAutosize)`
   font-size: ${({ theme }) => theme.textarea.fontSize};
@@ -35,17 +35,18 @@ const Clipper = () => {
 
   console.log("clipper");
   const changeValue = () => {
+    console.log("Change value");
     const _dev = state._dev;
     const string = _dev.designLines[_dev.lineIndex];
-    // const translate = Grammar(string)
-    // actions._dev.setClipboard(translate)
+    const translate = Grammar(string);
+    actions._dev.setClipboard(translate);
     const el = document.querySelector("#clip");
     setTimeout(() => {
       el.select();
       document.execCommand("copy");
     });
   };
-
+  // setTimeout(changeValue,1000)
   const upLine = () => {
     actions._dev.upLine();
     changeValue();
