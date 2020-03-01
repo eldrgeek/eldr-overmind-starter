@@ -22,4 +22,4 @@ const CurrentModule = Element => {
 };
 export { CurrentModule, React, useApp };
 export default CurrentModule;
-CurrentModule(Nothing);
+// CurrentModule(Nothing);

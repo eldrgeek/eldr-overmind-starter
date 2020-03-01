@@ -1,8 +1,8 @@
 const doLog = true;
-const logComponents = false;
+const logComponents = true;
 const logApp = true;
-const logUtil = false;
-const logRoot = false;
+const logUtil = true;
+const logRoot = true;
 export const logLoader = module => {
   if (doLog) {
     if (module.id) {

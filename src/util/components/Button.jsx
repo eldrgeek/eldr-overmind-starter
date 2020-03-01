@@ -15,7 +15,7 @@ const FancyButton = styled.button`
   }
 `;
 const defaultClick = event => {
-  console.log("clicked");
+  console.log("clickede");
   const saved = event.target.innerHTML;
   const target = event.target;
   target.innerHTML = "'onClick' callback prop needed";

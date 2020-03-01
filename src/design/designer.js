@@ -1,4 +1,4 @@
-export default `state counter 0
+export default `state counter 2s
 ^
 action modifyCounter
 ui scalar "counter" {counter}
