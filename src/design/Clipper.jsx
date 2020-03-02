@@ -2,7 +2,11 @@ import { CurrentModule, React, useApp, UI } from "../util";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
 import Grammar from "./Grammar";
+import { dispatch, actions as uiActions } from "codesandbox-api";
+
 // import design from "./designer";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const StyledTextarea = styled(TextareaAutosize)`
   font-size: ${({ theme }) => theme.textarea.fontSize};
   border-color: ${({ theme }) => theme.textarea.borderColor};
@@ -36,18 +40,23 @@ const Clipper = () => {
   const { state, actions } = useApp();
   // actions._dev.setDesignFromText(design);
 
-  console.log("clipper");
   const changeValue = () => {
-    console.log("Change value");
     const _dev = state._dev;
     const string = _dev.designLines[_dev.lineIndex];
-    const translate = Grammar(string);
-    // actions._dev.setClipboard(translate);
-    const el = document.querySelector("#clip");
-    setTimeout(() => {
-      el.select();
-      document.execCommand("copy");
-    });
+    const [file, translate] = Grammar(string);
+
+    if (!file) {
+      toast("ERROR  " + translate);
+    } else {
+      toast.success("Paste this into  " + file + "\n" + translate);
+      dispatch(uiActions.editor.openModule(file));
+      actions._dev.setClipboard(translate);
+      const el = document.querySelector("#clip");
+      setTimeout(() => {
+        el.select();
+        document.execCommand("copy");
+      });
+    }
   };
   // setTimeout(changeValue,1000)
   const noOp = ev => ev.preventDefault;
@@ -68,6 +77,7 @@ const Clipper = () => {
       style={{ display: !state._dev.clipperVisible ? "none" : "block" }}
       className="App"
     >
+      <ToastContainer autoClose={2000} />
       {TextArea(
         10,
         "above",

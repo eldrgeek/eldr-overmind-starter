@@ -1,5 +1,3 @@
-import { dispatch, actions } from "codesandbox-api";
-
 const parseLine = input => {
   // const actionPattern = /\s*(?<op>action) \s* (?<action>\w*)/
   const patterns = {
@@ -18,7 +16,7 @@ const parseLine = input => {
     statePattern: {
       pattern: /^\s*(state)\s+(\w+)\s*:?\s*(.*)$/,
       process: (pattern, match) =>
-        `  ${match[pattern.var]}: ${match[pattern.initializer]}`,
+        `  ${match[pattern.var]}: ${match[pattern.initializer]},`,
       file: "/src/app/state.js",
       op: 1,
       var: 2,
@@ -26,7 +24,7 @@ const parseLine = input => {
     },
     actionPattern: {
       pattern: /\s*(action)\s+(\w+)\((.*)\)/,
-      file: "/src/app/actions/js",
+      file: "/src/app/actions.js",
       process: (pattern, match) => {
         const param = match[pattern.param];
         if (param) {
@@ -43,20 +41,19 @@ const parseLine = input => {
     }
   };
   let output = "";
-
+  let file = "";
   Object.keys(patterns).map(key => {
     const pattern = patterns[key];
     const matcher = input.match(pattern.pattern);
     if (matcher) {
       output = pattern.process(pattern, matcher);
-      console.log("output", output);
-      // dispatch(actions.editor.openModule(pattern.file))
+      file = pattern.file;
       return output;
     }
     return false;
   });
-  console.log("parseLine", input, output);
-  return output;
+  // console.log("parseLine", input, output);
+  return [file, output];
   /*^
   
   /*
