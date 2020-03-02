@@ -2,7 +2,6 @@ import { dispatch, actions } from "codesandbox-api";
 
 const parseLine = input => {
   // const actionPattern = /\s*(?<op>action) \s* (?<action>\w*)/
-
   const patterns = {
     uiPattern: {
       pattern: /\s*(ui)\s+(\w+)\s+(("[\w]*")|({[\w]*}))\s+(("[\w]*")|({[\w]*}))/,
@@ -26,16 +25,16 @@ const parseLine = input => {
       initializer: 3
     },
     actionPattern: {
-      pattern: /\s*(action)\s+(\w+)\((\w*)\)/,
+      pattern: /\s*(action)\s+(\w+)\((.*)\)/,
       file: "/src/app/actions/js",
       process: (pattern, match) => {
         const param = match[pattern.param];
         if (param) {
           return `${match[pattern.name]}({state,actions,effects},${param}){
-        }`;
+          }`;
         } else {
           return `${match[pattern.name]}({state,actions,effects}){
-        }`;
+          }`;
         }
       },
       op: 1,
@@ -43,10 +42,10 @@ const parseLine = input => {
       param: 3
     }
   };
+  let output = "";
 
   Object.keys(patterns).map(key => {
     const pattern = patterns[key];
-    let output = "";
     const matcher = input.match(pattern.pattern);
     if (matcher) {
       output = pattern.process(pattern, matcher);
@@ -56,17 +55,20 @@ const parseLine = input => {
     }
     return false;
   });
+  console.log("parseLine", input, output);
+  return output;
   /*^
-
-/*
-state counter: 0
-^
-action modifycounter()
-ui button "modify" {modifyCounters}
-
-*/
+  
+  /*
+  state counter: 0
+  ^
+  action modifycounter()
+  ui button "modify" {modifyCounters}
+  
+  */
 };
-parseLine('ui button "modify" {modifyCounters}');
+export default parseLine;
+//parseLine('ui button "modify" {modifyCounters}');
 
 // const nearley = require("nearley");
 // const compile = require("nearley/lib/compile");

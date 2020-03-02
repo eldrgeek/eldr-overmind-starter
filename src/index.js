@@ -22,6 +22,8 @@ function App() {
         <UI.Value wrapper={Wrapper} label="count" attr="count" />
         <UI.Button label="incr" onClick={actions.increaseCount} />
         <UI.Button label="decr" onClick={actions.decreaseCount} />
+      </div>
+      <div>
         <Clipper />
       </div>
     </React.Fragment>

@@ -18,12 +18,15 @@ const TextArea = (maxRows, id, value, onChange) => {
       theme={{
         textarea: {
           fontSize: "14px",
-          borderColor: "green"
+          borderColor: "green",
+          color: "red",
+          background: "lightgreen"
         }
       }}
       value={value}
       // onChange={onChange}
       id={id}
+      style={id === "selected" ? { background: "palegreen" } : {}}
       // onChange={changeText}
     />
   );
@@ -39,7 +42,7 @@ const Clipper = () => {
     const _dev = state._dev;
     const string = _dev.designLines[_dev.lineIndex];
     const translate = Grammar(string);
-    actions._dev.setClipboard(translate);
+    // actions._dev.setClipboard(translate);
     const el = document.querySelector("#clip");
     setTimeout(() => {
       el.select();
@@ -47,11 +50,12 @@ const Clipper = () => {
     });
   };
   // setTimeout(changeValue,1000)
-  const upLine = () => {
+  const noOp = ev => ev.preventDefault;
+  const upLine = ev => {
     actions._dev.upLine();
     changeValue();
   };
-  const downLine = () => {
+  const downLine = ev => {
     actions._dev.downLine();
     changeValue();
   };
@@ -91,9 +95,12 @@ const Clipper = () => {
       )}
       {TextArea(10, "clip", state._dev.toClipboard, () => null)}
 
-      <button onClick={upLine}> Up </button>
+      <button onClick={upLine} onDoubleClick={noOp}>
+        {" "}
+        Down{" "}
+      </button>
       <button onClick={changeValue}> Copy </button>
-      <button onClick={downLine}> Down </button>
+      <button onClick={downLine}> Up </button>
     </div>
   );
 };
