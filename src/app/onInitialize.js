@@ -10,7 +10,7 @@ export const onInitialize = async (
   // console.log("dev", design, actions._dev);
   // if(!reinit)
   // const app1 = await app
-  app.actions._dev.setDesignFromText(design);
+  actions._dev.setDesignFromText(design);
   // if(reinit) app.actions._dev.setDesignFromText({state,actions,effects},design)
   // console.log('on initialize', state, actions, effects);
 };

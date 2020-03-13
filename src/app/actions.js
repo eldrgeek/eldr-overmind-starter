@@ -1,7 +1,6 @@
 import { logLoader } from "../util/logloader";
 logLoader(module);
 export const actions = {};
-
 actions.incr = {
   increaseCount({ state }) {
     state.count++;
@@ -39,7 +38,6 @@ other
 more
 and more`
   ) {
-    // console.log("TEXT IS", text);
     const _dev = state._dev;
     const lines = text.split("\n");
     _dev.lineIndex = 0;

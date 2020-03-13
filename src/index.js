@@ -20,8 +20,8 @@ function App() {
     <React.Fragment>
       <div onDoubleClick={actions._dev.toggleVisible}>
         <UI.Value wrapper={Wrapper} label="count" attr="count" />
-        <UI.Button label="incr" onClick={actions.increaseCount} />
-        <UI.Button label="decr" onClick={actions.decreaseCount} />
+        <UI.Button label="incr" onClick={actions.incr.increaseCount} />
+        <UI.Button label="decr" onClick={actions.incr.decreaseCount} />
       </div>
       <div>
         <Clipper />

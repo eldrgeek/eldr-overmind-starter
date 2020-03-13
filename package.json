@@ -6,8 +6,8 @@
   "main": "src/index.js",
   "dependencies": {
     "nearley": "2.19.1",
-    "overmind": "22.0.5",
-    "overmind-react": "23.0.5",
+    "overmind": "23.0.1",
+    "overmind-react": "24.0.1",
     "react": "16.8.6",
     "react-autosize-textarea": "7.0.0",
     "react-dom": "16.8.6",

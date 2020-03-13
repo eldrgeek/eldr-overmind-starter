@@ -35,7 +35,16 @@ const TextArea = (maxRows, id, value, onChange) => {
     />
   );
 };
-
+const Msg = ({ closeToast, file, translate }) => (
+  <div>
+    Navigate to {file}
+    <br />
+    and paste <br />
+    {translate}
+    <br />
+    <button onClick={closeToast}>Close</button>
+  </div>
+);
 const Clipper = () => {
   const { state, actions } = useApp();
   // actions._dev.setDesignFromText(design);
@@ -48,7 +57,8 @@ const Clipper = () => {
     if (!file) {
       toast("ERROR  " + translate);
     } else {
-      toast.success("Paste this into  " + file + "\n" + translate);
+      // toast.success("Paste this into  " + file + "\n" + translate);
+      toast.success(<Msg file={file} translate={translate} />);
       dispatch(uiActions.editor.openModule(file));
       actions._dev.setClipboard(translate);
       const el = document.querySelector("#clip");
@@ -72,12 +82,13 @@ const Clipper = () => {
     const target = event.target;
     actions._dev.setClipboard(target.value);
   };
+  // console.log("the state", state);
   return (
     <div
       style={{ display: !state._dev.clipperVisible ? "none" : "block" }}
       className="App"
     >
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={false} />
       {TextArea(
         10,
         "above",
@@ -114,6 +125,5 @@ const Clipper = () => {
     </div>
   );
 };
-
 export default Clipper;
 CurrentModule(Clipper);
